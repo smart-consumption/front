@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="nav-brand">
+      <a routerLink="/" class="brand-name">Mi Aplicación</a>
+    </div>
+  
+    <!-- Botón hamburguesa para móvil -->
+    <button class="mobile-menu-button" (click)="toggleMenu()">
+      <span class="hamburger-icon"></span>
+    </button>
+  
+    <!-- Menú de navegación -->
+    <div class="nav-links" [class.active]="isMenuOpen">
+      <a routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
+      <a routerLink="/productos" routerLinkActive="active">Productos</a>
+      <a routerLink="/ofertas" routerLinkActive="active">Ofertas</a>
+      <a routerLink="/resenas" routerLinkActive="active">Reseñas</a>
+      <a routerLink="/tiendas" routerLinkActive="active">Tiendas</a>
+    </div>
+  </nav>

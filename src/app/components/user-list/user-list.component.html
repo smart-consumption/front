@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="header">
+      <h2>Lista de Usuarios</h2>
+      <button (click)="openAddUserModal()" class="btn btn-add">
+        Agregar Usuario
+      </button>
+    </div>
+  
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <span>Cargando usuarios...</span>
+    </div>
+    
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  
+    <div class="table-container" *ngIf="!loading && !error">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td class="actions">
+              <button (click)="editUser(user)" class="btn btn-edit">
+                Editar
+              </button>
+              <button (click)="deleteUser(user.id)" class="btn btn-delete">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
