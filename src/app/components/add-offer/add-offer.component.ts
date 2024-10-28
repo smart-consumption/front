@@ -33,11 +33,13 @@ export default class AddOfferComponent {
     const offerData = { 
       description: this.form.value.description,
       period: { startDate: this.form.value.Fechainicio, endDate: this.form.value.Fechafin }, 
-      discount: this.form.value.discount,
+      discountPercentage: this.form.value.discount,
       productId: this.form.value.productId
     }
+
       this.offerService.create(offerData, String(this.form.value.productId)).subscribe({
-        next: (response) => console.log("Oferta creada con éxito:", response),
+        next: (response) => {console.log("Oferta creada con éxito:", response)
+          this.router.navigate(['/ofertas']); },
         error: (error) => console.error("Error al crear la oferta:", error)
       });
 
