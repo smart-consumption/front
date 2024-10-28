@@ -1,0 +1,70 @@
+/* Estilos básicos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Encabezado de la tabla */
+  th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Filas alternas para mayor legibilidad */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Hover para resaltar la fila */
+  tr:hover {
+    background-color: #e0f7fa;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilos para celdas */
+  td {
+    color: #333;
+    vertical-align: middle;
+  }
+  
+  /* Ajuste de columnas */
+  td, th {
+    text-align: center;
+    min-width: 100px;
+  }
+  
+  /* Encapsulamiento de la tabla */
+  .table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+
+
+
+.btn-crear-oferta {
+  background-color: #007bff; 
+  color: white;
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px; 
+}
+
+.btn-crear-oferta:hover {
+  background-color: #0056b3; 
+}

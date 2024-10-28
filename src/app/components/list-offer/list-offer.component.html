@@ -1,0 +1,28 @@
+<h1>Ofertas</h1>
+<div class="text-end">
+    <button class="btn-crear-oferta" routerLink="/ofertas/crear-oferta">
+        Crear Oferta
+    </button>
+</div>
+
+
+<table class="table-container">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Periodo</th>
+        <th>Descuento</th>
+        <th>Producto ID</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let offer of offers; trackBy: trackById">
+        <td>{{ offer.id }}</td>
+        <td>{{ offer.description }}</td>
+        <td>{{ offer.period.startDate}} - {{ offer.period.endDate}}</td>
+        <td>{{ offer.discountPercentage}}</td>
+        <td>{{ offer.product?.id }}</td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+<div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input
+          type="text"
+          id="description"
+          formControlName="description"
+          class="form-control"
+          placeholder="Ingrese una descripción"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="Fechainicio">Fecha inicio</label>
+        <input
+          type="text"
+          id="Fechainicio"
+          formControlName="Fechainicio"
+          class="form-control"
+          placeholder="Ingrese la Fecha inicio de la oferta"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="Fechafin">Fecha fin</label>
+        <input
+          type="text"
+          id="Fechafin"
+          formControlName="Fechafin"
+          class="form-control"
+          placeholder="Ingrese la Fecha fin de la oferta"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="discount">Descuento (%)</label>
+        <input
+          type="number"
+          id="discount"
+          formControlName="discount"
+          class="form-control"
+          placeholder="Ingrese el porcentaje de descuento"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="productId">Product ID</label>
+        <input
+          id="productId"
+          formControlName="productId"
+          type="text"
+          class="form-control"
+          placeholder="Ingrese el ID del producto"
+        />
+      </div>
+  
+      <button type="submit" class="btn-submit">
+        Crear Oferta
+      </button>
+    </form>
+  </div>
+  
