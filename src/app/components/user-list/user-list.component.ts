@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
+import { AddUserModalComponent } from './add-user.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, AddUserModalComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
@@ -15,7 +18,7 @@ export class UserListComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -24,7 +27,7 @@ export class UserListComponent implements OnInit {
   loadUsers() {
     this.loading = true;
     this.error = null;
-    
+
     this.userService.getUsers().subscribe({
       next: (response) => {
         this.users = response.data;
@@ -39,7 +42,20 @@ export class UserListComponent implements OnInit {
   }
 
   openAddUserModal() {
-    // Aquí implementarías la lógica para abrir un modal de agregar usuario
+    const dialogRef = this.dialog.open(AddUserModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        this.userService.addUser(result).subscribe({
+          next: () => this.loadUsers(),
+          error: (error) => {
+            console.error('Error al agregar usuario:', error);
+            this.error = 'Error al agregar el usuario. Por favor, intenta de nuevo.';
+          }
+        });
+      }
+    });
   }
 
   editUser(user: User) {
@@ -47,7 +63,7 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    if(confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
       this.userService.deleteUser(id).subscribe({
         next: () => {
           this.loadUsers();

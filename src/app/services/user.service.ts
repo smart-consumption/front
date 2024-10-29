@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { ApiResponse, User } from '../interfaces/user.interface';
 
@@ -22,7 +22,15 @@ export class UserService {
   }
 
   addUser(user: User): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(this.apiUrl, user);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = JSON.stringify(user);
+    return this.http.post<ApiResponse>(this.apiUrl, body, { headers })
+    .pipe(
+      catchError((error)=>{
+        console.error('Error al agregar el usuario: ', error);
+        throw error;
+      })
+    );
   }
 
   updateUser(user: User): Observable<ApiResponse> {
