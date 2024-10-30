@@ -1,0 +1,21 @@
+<div class="container mx-auto p-6">
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <div *ngFor="let product of productReviews" class="p-4 bg-gray-200 rounded-lg shadow">
+      <div class="w-full h-32 bg-gray-400 rounded-lg"></div>
+      <h2 class="mt-4 text-lg font-semibold text-gray-700 text-center">{{ product.name }}</h2>
+
+      <button
+        class="mt-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+        (click)="loadProductReviews(product.id, product.name)">
+        Ver Reseñas
+      </button>
+    </div>
+  </div>
+
+  <app-review-modal
+    *ngIf="showModal"
+    [productName]="selectedProductName"
+    [reviews]="selectedReviews"
+    (close)="closeReviews()">
+  </app-review-modal>
+</div>
