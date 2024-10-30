@@ -1,19 +1,23 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Review } from '../../interfaces/review.interface';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-review-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './review-modal.component.html',
   styleUrl: './review-modal.component.css'
 })
 export class ReviewModalComponent {
+[x: string]: any;
   @Input() productName: string = '';
   @Input() reviews: Review[] = [];
   @Output() close = new EventEmitter<void>();
+  isAddingReview = false;
+  newReview: Review = { id: '', rating: 'AVERAGE', comment: '', date: '' };
+
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -61,4 +65,14 @@ export class ReviewModalComponent {
   onClose(): void {
     this.close.emit();
   }
+
+
+  onAddReview() {
+    this.isAddingReview = true;
+  }
+
+  submitReview() {
+    this.isAddingReview = false;
+  }
+
 }

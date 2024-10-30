@@ -6,16 +6,14 @@
         class="text-gray-500 hover:text-gray-700"
         (click)="onClose()">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
     </div>
-
     <div class="overflow-y-auto flex-grow">
       <div *ngIf="reviews.length === 0" class="text-center py-8 text-gray-500">
         No hay reseñas disponibles para este producto.
       </div>
-
       <div *ngFor="let review of reviews" class="mb-4 p-4 bg-gray-50 rounded-lg">
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center">
@@ -40,23 +38,37 @@
             {{ formatDate(review.date) }}
           </span>
         </div>
-
         <p class="text-gray-700 mt-2">
           {{ review.comment }}
         </p>
-
         <div class="mt-2 text-sm text-gray-500">
           ID: {{ review.id }}
         </div>
       </div>
     </div>
-
-    <div class="mt-4 pt-4 border-t border-gray-200">
+    <div class="mt-4 pt-4 border-t border-gray-200 flex justify-end space-x-2">
       <button
-        class="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors"
+        class="bg-gray-300 text-gray-900 py-1 px-3 rounded-lg hover:bg-red-500 transition-colors"
         (click)="onClose()">
         Cerrar
       </button>
+      <button
+        class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600 transition-colors"
+        (click)="onAddReview()">
+        Agregar Reseña
+      </button>
+    </div>
+    <div *ngIf="isAddingReview" class="mt-4">
+      <form>
+        <label class="block text-gray-700">Comentario:</label>
+        <textarea class="w-full p-2 border rounded-lg mt-2" [(ngModel)]="newReview.comment"></textarea>
+        <button
+          type="button"
+          class="bg-green-500 text-white py-1 px-3 rounded-lg hover:bg-green-600 transition-colors mt-2"
+          (click)="submitReview()">
+          Enviar Reseña
+        </button>
+      </form>
     </div>
   </div>
 </div>
