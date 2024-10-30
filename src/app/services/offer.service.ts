@@ -7,7 +7,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class OfferService {
-  private apiUrl = 'http://localhost:9002/smart-consumption/api-offer/v1/offer'; 
+  private apiUrl = 'http://localhost:9002/smart-consumption/api/v1/offer'; 
   constructor(private http: HttpClient) {}
 
   list(): Observable<any[]> {
