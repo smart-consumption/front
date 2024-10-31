@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { ApiResponseReview, Review , ApiResponseProductReview, ProductReview } from '../interfaces/review.interface';
+import { ApiResponseReview, Review , ApiResponseProductReview, ProductReview, ApiListResponseReview } from '../interfaces/review.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class ReviewService {
   constructor(private http: HttpClient) {}
 
   addReview(review: Review, userId: string, productId: string): Observable<ApiResponseReview> {
+    review.id = null;
     return this.http.post<ApiResponseReview>(`${this.apiUrl}/${userId}/${productId}`, review);
   }
 
@@ -23,8 +24,8 @@ export class ReviewService {
     return this.http.get<ApiResponseProductReview>(`${this.apiUrl}/product/all`);
   }
 
-  getProductReviews(productId: string): Observable<ApiResponseReview> {
-    return this.http.get<ApiResponseReview>(`${this.apiUrl}/productreview/${productId}`)
+  getProductReviews(productId: string):Observable<ApiListResponseReview> {
+    return this.http.get<ApiListResponseReview>(`${this.apiUrl}/productreview/${productId}`)
       .pipe(
         catchError((error) => {
           console.error('Error en el servicio:', error);

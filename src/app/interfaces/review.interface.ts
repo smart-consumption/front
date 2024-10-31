@@ -1,14 +1,20 @@
 import exp from "constants";
 
 export interface Review {
-  id: string;
+  id: string | null;
   rating: string;
   comment: string;
   date: string;
 }
 
-export interface ApiResponseReview {
+export interface ApiListResponseReview {
   data: Review[];
+  status: number;
+  message: string;
+}
+
+export interface ApiResponseReview {
+  data: Review;
   status: number;
   message: string;
 }

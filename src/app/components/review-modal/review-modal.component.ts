@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Review } from '../../interfaces/review.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
+import { ReviewService } from '../../services/review.service';
 
 @Component({
   selector: 'app-review-modal',
@@ -13,11 +14,14 @@ import { FormsModule } from '@angular/forms'
 export class ReviewModalComponent {
 [x: string]: any;
   @Input() productName: string = '';
+  @Input() productId: string = '';
   @Input() reviews: Review[] = [];
   @Output() close = new EventEmitter<void>();
   isAddingReview = false;
   newReview: Review = { id: '', rating: 'AVERAGE', comment: '', date: '' };
+  starRating = 3;
 
+  constructor(private reviewService: ReviewService) {}
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -62,6 +66,23 @@ export class ReviewModalComponent {
     }
   }
 
+  getRatingLabelNumber(number: number): string {
+    switch (number) {
+      case 1:
+        return 'TERRIBLE';
+      case 2:
+        return 'POOR';
+      case 3:
+        return 'AVERAGE';
+      case 4:
+        return 'GOOD';
+      case 5:
+        return 'EXCELLENT';
+      default:
+        return 'AVERAGE';
+    }
+  }
+
   onClose(): void {
     this.close.emit();
   }
@@ -72,6 +93,19 @@ export class ReviewModalComponent {
   }
 
   submitReview() {
+    this.newReview.rating = this.getRatingLabelNumber(this.starRating);
+    this.newReview.date = new Date().toISOString();
+
+    this.reviewService.addReview(this.newReview, '1000', this.productId).subscribe({
+      next: (response) => {
+        this.isAddingReview = false;
+        this.newReview.id = response.data.id;
+        this.reviews.push(this.newReview);
+      },
+      error: (error) => {
+        console.error('Error al agregar review:', error);
+      }
+    });
     this.isAddingReview = false;
   }
 
