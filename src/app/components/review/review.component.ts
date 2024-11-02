@@ -15,6 +15,7 @@ export class ReviewComponent {
   @Input() productReviews: ProductReview[] = [];
   selectedReviews: Review[] = [];
   selectedProductName: string = '';
+  selectedProductId: string = '';
   showModal: boolean = false;
   loading = false;
   error: string | null = null;
@@ -47,6 +48,7 @@ export class ReviewComponent {
       next: (response) => {
         this.selectedReviews = response.data;
         this.selectedProductName = productName;
+        this.selectedProductId = productId;
         this.showModal = true;
       },
       error: (error) => {

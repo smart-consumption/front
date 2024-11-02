@@ -35,6 +35,7 @@
   <app-review-modal
     *ngIf="showModal"
     [productName]="selectedProductName"
+    [productId]="selectedProductId"
     [reviews]="selectedReviews"
     (close)="closeReviews()">
   </app-review-modal>
