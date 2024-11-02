@@ -1,28 +1,67 @@
-<h1>Ofertas</h1>
-<div class="text-end">
-    <button class="btn-crear-oferta" routerLink="/ofertas/crear-oferta">
-        Crear Oferta
-    </button>
+<div class="container">
+    <div class="header">
+        <h2>Ofertas</h2>
+        <button class="btn btn-add" routerLink="/ofertas/crear-oferta">
+            Crear Oferta
+        </button>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Periodo</th>
+                    <th>Descuento</th>
+                    <th>Producto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let offer of offers; trackBy: trackById">
+                    <td>{{ offer.id }}</td>
+                    <td>{{ offer.description }}</td>
+                    <td>{{ offer.period.startDate }} - {{ offer.period.endDate }}</td>
+                    <td>{{ offer.discountPercentage }}</td>
+                    <td>{{ offer.product?.name }}</td>
+                    <td class="actions">
+                        <button (click)="editOffer(offer)" class="btn btn-edit">
+                            Actualizar
+                        </button>
+                        <button (click)="deleteOffer(offer.id)" class="btn btn-delete">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
+<!-- Modal para editar oferta -->
+<div *ngIf="isEditModalOpen" class="modal">
+    <div class="modal-content">
+        <span (click)="closeEditModal()" class="close">&times;</span>
+        <h3>Editar Oferta</h3>
+        <form [formGroup]="editForm" (ngSubmit)="updateOffer(selectedOffer.id)">
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <input formControlName="description" type="text" id="description" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="startDate">Fecha inicio</label>
+                <input formControlName="startDate" type="text" id="startDate" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="endDate">Fecha fin</label>
+                <input formControlName="endDate" type="text" id="endDate" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="discountPercentage">Descuento (%)</label>
+                <input formControlName="discountPercentage" type="number" min="0" max="100" id="discountPercentage" required class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-save">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
 
-<table class="table-container">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Descripción</th>
-        <th>Periodo</th>
-        <th>Descuento</th>
-        <th>Producto ID</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let offer of offers; trackBy: trackById">
-        <td>{{ offer.id }}</td>
-        <td>{{ offer.description }}</td>
-        <td>{{ offer.period.startDate}} - {{ offer.period.endDate}}</td>
-        <td>{{ offer.discountPercentage}}</td>
-        <td>{{ offer.product?.id }}</td>
-    </tr>
-    </tbody>
-</table>

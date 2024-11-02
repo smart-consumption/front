@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { throwError } from 'rxjs';
-import { Offer } from '../interfaces/offer.interface';
+import { Offer,ApiResponseOffer } from '../interfaces/offer.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,22 @@ export class OfferService {
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl)
+  list(): Observable<Offer[]> { 
+    return this.http.get<ApiResponseOffer>(this.apiUrl)
       .pipe(
+        map((response: ApiResponseOffer) => 
+          response.data.map(offer => ({
+            ...offer,
+          }))
+        ),
         catchError((error) => {
           console.error('Error en el servicio:', error);
           return throwError(error);
         })
-      );
+      ); 
   }
+  
+  
 
   create(offer: Offer, productId: string): Observable<Offer> {
     const url = `${this.apiUrl}/${productId}`;
@@ -33,6 +40,24 @@ export class OfferService {
         })
       );
   }
+
+  update(offer: Offer, offerId: string): Observable<Offer> { 
+    const url = `${this.apiUrl}/${offerId}`; 
+    return this.http.put<Offer>(url, offer)
+    .pipe( catchError((error) => { 
+      console.error('Error al actualizar la oferta:', error); 
+      return throwError(error); 
+    }) ); 
+  }
+
+  delete(offerId: string): Observable<void> { 
+    const url = `${this.apiUrl}/${offerId}`; 
+    return this.http.delete<void>(url)
+    .pipe( catchError((error) => { 
+      console.error('Error al eliminar la oferta:', error); return throwError(error);
+    }) ); 
+  }
+  
 }
 
 
