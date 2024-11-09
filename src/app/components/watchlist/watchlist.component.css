@@ -1,0 +1,67 @@
+.watchlist-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .watchlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  label {
+    font-weight: 500;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .message {
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    background-color: #e9ecef;
+    border-radius: 4px;
+  }
+  
+  .watchlist-products {
+    margin-top: 20px;
+  }
+  
+  .product-list {
+    margin-top: 10px;
+  }
+  
+  .product-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .product-item:last-child {
+    border-bottom: none;
+  }

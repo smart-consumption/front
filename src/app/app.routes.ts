@@ -3,6 +3,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import ListOfferComponent from './components/list-offer/list-offer.component';
 import AddOfferComponent from './components/add-offer/add-offer.component';
 import { ReviewComponent } from './components/review/review.component';
+import {WatchlistComponent} from './components/watchlist/watchlist.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'ofertas/crear-oferta', component: AddOfferComponent},
   { path: 'resenas', component: ReviewComponent },
   { path: 'tiendas', component: UserListComponent },   // Temporalmente apunta a UserList
+  { path: 'watchlist', component: WatchlistComponent }
 ];
