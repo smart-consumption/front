@@ -7,7 +7,7 @@ import { ApiResponse, User } from '../interfaces/user.interface';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/smart-consumption/api/v1/user/watchlist'; // Reemplaza con tu URL
+  private apiUrl = 'http://localhost:8080/smart-consumption/api/v1/user';
 
   constructor(private http: HttpClient) {}
 
@@ -42,10 +42,11 @@ export class UserService {
   }
 
   addToWatchlist(userId: string, productId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${userId}/${productId}`);
+    return this.http.post(`${this.apiUrl}/watchlist/${userId}/${productId}`,null);
   }
 
   getWatchlist(userId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${userId}`);
+    let userWatch=this.http.get(`${this.apiUrl}/watchlist/${userId}`);
+    return userWatch;
   }
 }
