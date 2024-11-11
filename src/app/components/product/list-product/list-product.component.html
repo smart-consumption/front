@@ -1,0 +1,68 @@
+<div class="card text-white mb-3">
+  <div class="card-header">
+    <h2>Lista de Productos</h2>
+    <button class="btn btn-rounded btn-warning" type="button" [routerLink]="['/productos/crear']">
+      Agregar Producto
+    </button>
+  </div>
+  <div class="card-body">
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading alert alert-info">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+      <span class="ml-2">Cargando productos...</span>
+    </div>
+    
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+  
+    <!-- Product Table -->
+    <div *ngIf="!loading && !error" class="table-container">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price | currency }}</td>
+            <td>
+              <span 
+                [ngClass]="{
+                  'bg-lightgreen text-dark': product.status === 'AVAILABLE', 
+                  'bg-lightcoral text-white': product.status === 'OUT_OF_STOCK',
+                  'bg-lightyellow text-dark': product.status === 'DISCONTINUED'
+                }" 
+                class="rounded-pill px-2 py-1">
+                {{ product.status }}
+              </span>
+            </td>
+            <td>{{ product.detail.description }}</td>
+
+            <td class="actions">
+              <button class="btn btn-action btn-edit">
+                Editar
+              </button>
+              <button class="btn btn-action btn-delete" (click)="eliminar(product)">
+                Eliminar
+              </button>
+            </td>            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

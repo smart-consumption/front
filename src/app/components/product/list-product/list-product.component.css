@@ -1,0 +1,51 @@
+/* Verde suave para "Disponible" */
+.bg-lightgreen {
+    background-color: rgba(144, 238, 144, 0.5); /* Light green */
+    color: #2c6b2f; /* Dark green text */
+  }
+  
+  /* Rojo suave para "Fuera de stock" */
+  .bg-lightcoral {
+    background-color: rgba(240, 128, 128, 0.5); /* Light coral/red */
+    color: white;
+  }
+  
+  /* Amarillo suave para "Descontinuado" */
+  .bg-lightyellow {
+    background-color: rgba(255, 255, 102, 0.5); /* Light yellow */
+    color: #333; /* Dark text for better readability */
+  }
+  
+
+  /* Botones de acción con tamaño más pequeño y colores suaves */
+.btn-action {
+    font-size: 0.9rem; /* Tamaño de fuente reducido */
+    padding: 5px 12px; /* Reducir el padding */
+    border-radius: 20px; /* Bordes redondeados */
+    border: 1px solid transparent; /* Sin borde visible */
+    transition: all 0.3s ease; /* Transición suave para el hover */
+  }
+  
+  .btn-edit {
+    background-color: rgba(144, 238, 144, 0.5); /* Verde claro */
+    color: #2c6b2f; /* Texto oscuro */
+  }
+  
+  .btn-delete {
+    background-color: rgba(187, 53, 53, 0.5); /* Rojo suave */
+    color: white; /* Texto blanco */
+  }
+  
+  /* Hover effects para los botones */
+  .btn-action:hover {
+    opacity: 0.8; /* Ligera disminución de opacidad en hover */
+  }
+  
+  .btn-edit:hover {
+    background-color: rgba(93, 255, 93, 0.7); /* Verde más fuerte al hacer hover */
+  }
+  
+  .btn-delete:hover {
+    background-color: rgba(180, 47, 47, 0.7); /* Rojo más fuerte al hacer hover */
+  }
+  
