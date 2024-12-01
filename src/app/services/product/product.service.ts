@@ -7,7 +7,7 @@ import { ApiResponse, ApiSaveResponse, Product } from '../../interfaces/product.
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:9001/smart-consumption/api/v1/product';
+  private apiUrl = 'http://localhost:8080/smart-consumption/api/v1/product';
 
   constructor(private http: HttpClient) {}
 

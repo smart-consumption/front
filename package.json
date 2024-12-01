@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:smart-consumption-front": "node dist/smart-consumption-front/server/server.mjs"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -20,10 +19,10 @@
     "@angular/material": "^18.2.10",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
-    "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@angular/ssr": "^18.2.10",
     "express": "^4.18.2",
+    "keycloak-angular": "^16.1.0",
+    "keycloak-js": "^26.0.6",
     "rxjs": "~7.8.0",
     "smart-consumption-front": "file:",
     "sweetalert2": "^11.14.5",
